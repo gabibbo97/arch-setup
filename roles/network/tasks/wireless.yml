@@ -1,0 +1,17 @@
+---
+- name: Install systemd wireless network unit
+  copy:
+    src: 20-Wireless.network
+    dest: /etc/systemd/network
+    force: true
+  become: true
+- name: Install iwd
+  pacman:
+    name: iwd
+  become: true
+- name: Enable iwd
+  systemd:
+    name: iwd
+    enabled: true
+    state: started
+  become: true

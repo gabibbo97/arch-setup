@@ -1,0 +1,39 @@
+---
+- name: Install compilers and tools
+  pacman:
+    name:
+      # C
+      - clang
+      - cppcheck
+      - gcc
+      - valgrind
+      # Go
+      - go
+      - go-tools
+      # Java
+      - jre-openjdk
+      - jdk-openjdk
+      # Javascript
+      - nodejs
+      - npm
+      - yarn
+      # PHP
+      - composer
+      - php
+      # Python
+      - python
+      - python-pip
+      - python-virtualenv
+      - pypy3
+      # Rust
+      - rust
+      # Shell
+      - shellcheck
+  become: true
+- name: Install Android tools
+  import_role:
+    name: aur
+  vars:
+    aur_packages:
+      - android-studio
+      - android-tools

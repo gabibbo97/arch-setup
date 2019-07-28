@@ -1,0 +1,22 @@
+---
+- name: Configure Pacman color option
+  lineinfile:
+    path: /etc/pacman.conf
+    line: 'Color'
+    regexp: '^[#]*Color'
+    insertafter: '^[options]'
+  become: true
+- name: Configure Pacman total download option
+  lineinfile:
+    path: /etc/pacman.conf
+    line: 'TotalDownload'
+    regexp: '^[#]*TotalDownload'
+    insertafter: '^[options]'
+  become: true
+- name: Configure Pacman verbose package list option
+  lineinfile:
+    path: /etc/pacman.conf
+    line: 'VerbosePkgLists'
+    regexp: '^[#]*VerbosePkgLists'
+    insertafter: '^[options]'
+  become: true

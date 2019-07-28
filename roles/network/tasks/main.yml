@@ -1,0 +1,30 @@
+---
+- import_tasks: wireless.yml
+  when: ansible_interfaces | select('match','^w') | list | length > 0
+- name: Install systemd wired network unit
+  copy:
+    src: 10-Wired.network
+    dest: /etc/systemd/network
+    force: true
+  become: true
+
+- name: Enable systemd-networkd
+  systemd:
+    name: systemd-networkd
+    enabled: true
+    state: started
+  become: true
+
+- name: Enable systemd-resolved
+  systemd:
+    name: systemd-resolved
+    enabled: true
+    state: started
+  become: true
+
+- name: Link systemd-resolved to resolv.conf
+  file:
+    src: /run/systemd/resolve/stub-resolv.conf
+    dest: /etc/resolv.conf
+    state: link
+  become: true

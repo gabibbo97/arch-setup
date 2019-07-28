@@ -1,0 +1,8 @@
+---
+- name: Configure mkinitcpio hooks
+  lineinfile:
+    path: /etc/mkinitcpio.conf
+    regexp: '^HOOKS'
+    line: HOOKS=(base systemd autodetect keyboard sd-vconsole modconf block sd-encrypt sd-lvm2 filesystems fsck strip)
+  become: true
+  notify: Regen initramfs

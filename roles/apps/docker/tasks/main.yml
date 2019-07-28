@@ -1,0 +1,62 @@
+---
+- name: Install Docker
+  pacman:
+    name: docker
+  become: true
+
+- name: Add current user to docker group
+  user:
+    name: "{{ ansible_user }}"
+    groups: docker
+    append: true
+  become: true
+
+- name: Create Docker config directory
+  file:
+    path: /etc/docker
+    state: directory
+  become: true
+- name: Configure Docker
+  copy:
+    content: "{{ docker_config | to_nice_json }}"
+    dest: /etc/docker/daemon.json
+    force: true
+  become: true
+
+- name: Copy Docker mount unit
+  template:
+    src: var-lib-docker.mount
+    dest: /etc/systemd/system
+  register: docker_mount
+  become: true
+
+- name: Create Docker override folder
+  file:
+    path: /etc/systemd/system/docker.service.d
+    state: directory
+  become: true
+
+- name: Copy Docker mount unit
+  template:
+    src: mount-override.conf
+    dest: /etc/systemd/system/docker.service.d
+  register: docker_mount_requisite
+  become: true
+
+- name: Reload systemd
+  systemd:
+    daemon-reload: true
+  when: (docker_mount['changed'] | bool) or (docker_mount_requisite['changed'] | bool)
+
+- name: Enable Docker mount
+  systemd:
+    name: var-lib-docker.mount
+    enabled: true
+  when: docker_mount['changed'] | bool
+
+- name: Start Docker
+  systemd:
+    name: docker.socket
+    enabled: true
+    state: started
+  become: true

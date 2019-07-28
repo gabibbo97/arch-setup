@@ -1,0 +1,51 @@
+---
+- name: List GPUs
+  shell: lspci | egrep '(3D|VGA)'
+  register: command
+  changed_when: false
+# 3D and Video acceleration
+- name: Install AMD video drivers
+  pacman:
+    name:
+      - mesa
+      - vulkan-radeon
+      - libva-mesa-driver
+      - mesa-vdpau
+  when: "'AMD' in command['stdout']"
+  become: true
+- name: Install Intel video drivers
+  pacman:
+    name:
+      - mesa
+      - vulkan-intel
+      - intel-media-driver
+      - libva-intel-driver
+  when: "'Intel' in command['stdout']"
+  become: true
+- name: Install NVIDIA video drivers
+  pacman:
+    name:
+      - mesa
+      - libva-mesa-driver
+      - mesa-vdpau
+  when: "'NVIDIA' in command['stdout']"
+  become: true
+- name: Install Vulkan support
+  pacman:
+    name:
+      - vulkan-icd-loader
+      - vulkan-tools
+  become: true
+# Codecs
+- name: Install codecs
+  pacman:
+    name:
+      # Audio
+      - flac
+      - lame
+      - opus
+      # Video
+      - aom
+      - x264
+      - x265
+  become: true

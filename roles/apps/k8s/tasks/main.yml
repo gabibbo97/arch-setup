@@ -1,0 +1,58 @@
+---
+- name: Install k8s utilities
+  import_role:
+    name: aur
+  vars:
+    aur_packages:
+      - docker-machine-driver-kvm2
+      - kind-bin
+      - kubectl-bin
+      - kubernetes-helm-bin
+      - minikube-bin
+
+- name: Install libvirt
+  pacman:
+    name: libvirt
+  become: true
+
+- name: Configure passwordless polkit
+  copy:
+    content: |-
+      /* Allow members of the wheel group to execute any actions
+      * without password authentication, similar to "sudo NOPASSWD:"
+      */
+      polkit.addRule(function(action, subject) {
+          if (subject.isInGroup("wheel")) {
+              return polkit.Result.YES;
+          }
+      });
+    dest: /etc/polkit-1/rules.d/49-nopasswd_global.rules
+    force: true
+  become: true
+
+- name: Get minikube vm driver
+  command: minikube config get vm-driver
+  register: vm_driver
+  changed_when: false
+  failed_when: false
+
+- name: Set minikube vm driver
+  command: minikube config set vm-driver kvm2
+  when: (vm_driver['rc'] != 0) or (vm_driver['stdout'] != 'kvm2')
+
+- name: Install libvirt prereqs
+  pacman:
+    name:
+      - bridge-utils
+      - dnsmasq
+      - ebtables
+      - netcat
+      - qemu
+  become: true
+
+- name: Start libvirtd
+  systemd:
+    name: libvirtd
+    state: started
+    enabled: true
+  become: true

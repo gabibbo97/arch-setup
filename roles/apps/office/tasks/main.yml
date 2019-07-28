@@ -1,0 +1,12 @@
+---
+- name: Install office suites
+  pacman:
+    name:
+      - libreoffice-fresh
+      - libreoffice-fresh-it
+      - libreoffice-fresh-en-gb
+      - hunspell
+      - hunspell-it
+      - texlive-most
+      - mupdf
+  become: true

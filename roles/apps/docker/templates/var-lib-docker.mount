@@ -1,0 +1,13 @@
+[Unit]
+Description = Mount Docker data dir in tmpfs
+Before = docker.service
+Before = docker.socket
+BindsTo = docker.service
+
+[Mount]
+What = tmpfs
+Where = /var/lib/docker
+Type = tmpfs
+
+[Install]
+WantedBy = multi-user.target

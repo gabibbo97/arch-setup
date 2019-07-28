@@ -1,0 +1,33 @@
+---
+- name: Install web browsers
+  pacman:
+    name:
+      - chromium
+      - firefox
+      - firefox-i18n-it
+      - firefox-i18n-en-gb
+      - firefox-i18n-en-us
+      - firefox-ublock-origin
+  become: true
+
+- name: Install downloaders
+  pacman:
+    name:
+      - aria2
+      - curl
+      - wget
+  become: true
+
+- name: Install communication apps
+  pacman:
+    name:
+      - telegram-desktop
+  become: true
+
+- name: Install AUR packages
+  import_role:
+    name: aur
+  vars:
+    aur_packages:
+      - discord
+      - skypeforlinux-stable-bin

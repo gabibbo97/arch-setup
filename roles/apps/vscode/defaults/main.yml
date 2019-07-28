@@ -1,0 +1,6 @@
+---
+vscode_extensions:
+  - vscode-icons-team.vscode-icons
+
+vscode_config:
+  workbench.iconTheme: vscode-icons

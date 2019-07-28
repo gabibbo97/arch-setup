@@ -1,0 +1,10 @@
+---
+docker_config:
+  data-root: /var/lib/docker
+  exec-opts": ["native.cgroupdriver=systemd"]
+  live-restore: true
+  log-driver: json-file
+  log-opts: { max-size: "2m", max-file: "5" }
+  max-concurrent-downloads: "{{ ansible_processor_vcpus }}"
+  max-concurrent-uploads: "{{ ansible_processor_vcpus }}"
+  storage-driver: overlay2

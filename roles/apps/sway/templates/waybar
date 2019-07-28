@@ -1,0 +1,36 @@
+{
+  "position":"top",
+  "modules-left":[
+    "sway/workspaces",
+    "sway/window",
+    "sway/mode"
+  ],
+  "modules-center":[
+    "clock",
+    "tray"
+  ],
+  "modules-right":[
+    "pulseaudio",
+    "network",
+    "battery"
+  ],
+  "clock":{},
+  "pulseaudio":{
+    "format": "{volume}% {icon}",
+    "format-muted": "",
+    "format-icons": {
+      "headphones": "",
+      "default": ["","",""]
+    },
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+  },
+  "network":{
+    "format-wifi": "{essid} ({signalStrength}%) "
+  },
+  "battery":{
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}%  {icon}",
+    "format-full": "BATTERY FULL",
+    "format-icons": ["", "", "", "", ""]
+  }
+}

@@ -1,0 +1,12 @@
+---
+- name: Create pacman hooks directory
+  file:
+    path: /etc/pacman.d/hooks
+    state: directory
+  become: true
+- name: Deploy pacman hooks
+  template:
+    src: "{{ item }}"
+    dest: /etc/pacman.d/hooks
+  with_fileglob: "{{ role_path }}/templates/*.hook"
+  become: true

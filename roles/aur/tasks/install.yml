@@ -1,0 +1,13 @@
+---
+- name: Check packages
+  command: "yay -Q {{ item }}"
+  changed_when: false
+  failed_when: false
+  loop: "{{ aur_packages }}"
+  register: yay_check
+
+- name: Install AUR packages
+  command: "yay -S --needed --noconfirm {{ aur_needed | join(' ') }}"
+  changed_when: aur_needed | length > 0
+  vars:
+    aur_needed: "{{ yay_check['results'] | selectattr('rc','ne',0) | map(attribute='item') | list }}"

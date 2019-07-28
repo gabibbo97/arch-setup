@@ -1,0 +1,7 @@
+---
+- name: Regen initramfs
+  command: "mkinitcpio -p {{ item }}"
+  loop:
+    - linux
+    - linux-lts
+  become: true

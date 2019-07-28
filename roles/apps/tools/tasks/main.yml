@@ -1,0 +1,20 @@
+---
+- name: Install tools
+  pacman:
+    name:
+      - bat
+      - exa
+      - fzf
+      - jq
+      - parallel
+      - ripgrep
+      - tree
+      - yq
+  become: true
+
+- name: Install useful programs
+  pacman:
+    name:
+      - htop
+      - powertop
+  become: true

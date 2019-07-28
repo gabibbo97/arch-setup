@@ -1,0 +1,26 @@
+---
+- name: Install Visual Studio Code
+  pacman:
+    name:
+      - code
+  become: true
+
+- name: List Visual Studio Code extensions
+  command: code --list-extensions
+  register: command
+  changed_when: false
+
+- name: Install Visual Studio Code extensions
+  command: "code --install-extension {{ item }}"
+  loop: "{{ vscode_extensions }}"
+  when: item not in command['stdout_lines']
+
+- name: Create Visual Studio Code configuration directory
+  file:
+    path: "{{ ansible_user_dir }}/.config/Code - OSS/User"
+    state: directory
+- name: Configure Visual Studio Code
+  copy:
+    force: true
+    dest: "{{ ansible_user_dir }}/.config/Code - OSS/User/settings.json"
+    content: "{{ vscode_config | to_nice_json }}"

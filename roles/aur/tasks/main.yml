@@ -1,0 +1,34 @@
+---
+- name: Check yay
+  command: yay -v
+  changed_when: false
+  failed_when: false
+  register: yay
+
+- name: Install yay
+  block:
+  - name: Create tempdir
+    tempfile:
+      state: directory
+    register: yay_dir
+  - name: Install Git
+    pacman:
+      name: git
+    become: true
+  - name: Clone yay
+    git:
+      repo: https://aur.archlinux.org/yay.git
+      dest: "{{ yay_dir['path'] }}"
+  - name: Install yay
+    command: makepkg -si --noconfirm
+    args:
+      chdir: "{{ yay_dir['path'] }}"
+  always:
+  - name: Delete tempdir
+    file:
+      path: "{{ yay_dir['path'] }}"
+      state: absent
+  when: yay['rc'] != 0
+
+- import_tasks: install.yml
+  when: aur_packages is defined

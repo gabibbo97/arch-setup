@@ -1,0 +1,58 @@
+---
+- name: Install sway and tools
+  pacman:
+    name:
+      - alacritty
+      - bemenu
+      - dmenu
+      - grim
+      - mako
+      - otf-font-awesome
+      - slurp
+      - libnotify
+      - sway
+      - swaybg
+      - swayidle
+      - swaylock
+      - waybar
+      - wl-clipboard
+      - xorg-server-xwayland
+  become: true
+
+- name: Install brightnessctl
+  import_role:
+    name: aur
+  vars:
+    aur_packages:
+      - brightnessctl
+
+- name: Create config directories
+  file:
+    path: "{{ item }}"
+    state: directory
+  loop: "{{ dotfiles | map(attribute='dest') | map('dirname') | unique | list }}"
+
+- name: Configure sway
+  template:
+    src: "{{ item['src'] }}"
+    dest: "{{ item['dest'] }}"
+  loop: "{{ dotfiles }}"
+  loop_control:
+    label: "{{ item['dest'] }}"
+
+- name: Setup environment variables
+  lineinfile:
+    path: /etc/environment
+    line: "{{ item['key'] }}={{ item['value'] }}"
+  with_dict:
+    _JAVA_AWT_WM_NONREPARENTING: 1
+    BEMENU_BACKEND: wayland
+    ECORE_EVAS_ENGINE: wayland_egl
+    ELM_ACCEL: gl
+    ELM_DISPLAY: wl
+    ELM_ENGINE: wayland_egl
+    MOZ_ENABLE_WAYLAND: 1
+    QT_QPA_PLATFORM: wayland-egl
+    SDL_VIDEODRIVER: wayland
+  become: true
+  

@@ -1,0 +1,7 @@
+---
+- name: Install PulseAudio
+  pacman:
+    name:
+      - pulseaudio
+      - pulseaudio-alsa
+  become: true

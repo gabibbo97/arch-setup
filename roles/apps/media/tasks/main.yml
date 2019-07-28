@@ -1,0 +1,17 @@
+---
+- name: Install audio tools
+  pacman:
+    name:
+      - cmus
+  become: true
+- name: Install image tools
+  pacman:
+    name:
+      - imv
+  become: true
+- name: Install video tools
+  pacman:
+    name:
+      - mpv
+      - youtube-dl
+  become: true
