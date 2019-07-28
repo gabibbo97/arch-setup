@@ -1,6 +1,51 @@
 ---
 vscode_extensions:
+  - aaron-bond.better-comments
+  - CoenraadS.bracket-pair-colorizer-2
+  - coolbear.systemd-unit-file
+  - dbaeumer.vscode-eslint
+  - eamodio.gitlens
+  - felixfbecker.php-debug
+  - felixfbecker.php-intellisense
+  - felixfbecker.php-pack
+  - goessner.mdmath
+  - hbenl.vscode-firefox-debug
+  - James-Yu.latex-workshop
+  - lkytal.FlatUI
+  - mauve.terraform
+  - ms-azuretools.vscode-docker
+  - ms-kubernetes-tools.vscode-kubernetes-tools
+  - ms-python.python
+  - ms-vscode.cpptools
+  - ms-vscode.Go
+  - msjsdiag.debugger-for-chrome
+  - redhat.java
+  - redhat.vscode-yaml
+  - rust-lang.rust
+  - shanoor.vscode-nginx
+  - timonwong.shellcheck
   - vscode-icons-team.vscode-icons
+  - vscoss.vscode-ansible
 
 vscode_config:
+  workbench.colorTheme: FlatUI Dark
+  editor.cursorSmoothCaretAnimation: true
+  editor.formatOnPaste: true
+  editor.formatOnType: true
+  editor.renderControlCharacters: true
+  editor.renderLineHighlight: all
+  editor.renderWhitespace: boundary
+  files.insertFinalNewline: true
+  files.trimFinalNewlines: true
+  files.trimTrailingWhitespace: true
+  git.allowForcePush: true
+  git.alwaysSignOff: true
+  git.autofetch: true
+  git.autoStash: true
+  git.confirmSync: false
+  git.enableSmartCommit: true
+  git.fetchOnPull: true
+  git.rebaseWhenSync: true
+  window.title: "${dirty}${activeEditorShort}${separator}${rootName}"
+  window.titleBarStyle: custom
   workbench.iconTheme: vscode-icons
