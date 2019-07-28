@@ -28,10 +28,10 @@ vscode_extensions:
   - vscoss.vscode-ansible
 
 vscode_config:
-  workbench.colorTheme: FlatUI Dark
   editor.cursorSmoothCaretAnimation: true
   editor.formatOnPaste: true
   editor.formatOnType: true
+  editor.glyphMargin: false
   editor.renderControlCharacters: true
   editor.renderLineHighlight: all
   editor.renderWhitespace: boundary
@@ -48,4 +48,5 @@ vscode_config:
   git.rebaseWhenSync: true
   window.title: "${dirty}${activeEditorShort}${separator}${rootName}"
   window.titleBarStyle: custom
+  workbench.colorTheme: FlatUI Dark
   workbench.iconTheme: vscode-icons
