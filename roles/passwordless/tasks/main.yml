@@ -1,0 +1,19 @@
+---
+- name: Enable passwordless sudo
+  lineinfile:
+    path: /etc/sudoers
+    regexp: "^.*%wheel.*NOPASSWD"
+    line: "%wheel\tALL=(ALL)\tNOPASSWD:\tALL"
+    validate: visudo -cf %s
+  become: true
+
+- name: Create getty override directory
+  file:
+    path: /etc/systemd/system/getty@tty1.service.d
+    state: directory
+  become: true
+- name: Prepare autologin
+  template:
+    src: getty.conf
+    dest: /etc/systemd/system/getty@tty1.service.d/autologin.conf
+  become: true

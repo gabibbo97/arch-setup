@@ -12,5 +12,6 @@
     - { role: mkinitcpio, tags: ["mkinitcpio"] }
     - { role: network, tags: ["network"] }
     - { role: pacman, tags: ["pacman"] }
+    - { role: passwordless, tags: ["passwordless"] }
     # Applications
     - { role: apps, tags: ["apps"] }
