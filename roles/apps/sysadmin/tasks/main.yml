@@ -1,0 +1,19 @@
+---
+- name: Install sysadmin apps
+  pacman:
+    name:
+      - ansible
+      - ansible-lint
+      - terraform
+      - vagrant
+      - vault
+  become: true
+
+- name: Get Vagrant plugin list
+  command: vagrant plugin list
+  register: command
+  changed_when: false
+
+- name: Install Vagrant-libvirt
+  command: vagrant plugin install vagrant-libvirt
+  when: "'vagrant-libvirt' not in command['stdout']"
