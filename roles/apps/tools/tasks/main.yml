@@ -16,5 +16,6 @@
   pacman:
     name:
       - htop
+      - openssh
       - powertop
   become: true
