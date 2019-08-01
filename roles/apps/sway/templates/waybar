@@ -1,3 +1,4 @@
+{% raw %}
 {
   "position":"top",
   "modules-left":[
@@ -6,15 +7,28 @@
     "sway/mode"
   ],
   "modules-center":[
+    "cpu",
     "clock",
-    "tray"
+    "memory"
   ],
   "modules-right":[
+    "tray",
     "pulseaudio",
     "network",
     "battery"
   ],
-  "clock":{},
+  "cpu": {
+    "format": "{usage}% ",
+    "interval": 2
+  },
+  "clock": {
+    "interval": 1,
+    "format": "{:%a %d %b %Y - %T}"
+  },
+  "memory": {
+    "format": "{percentage}% ",
+    "interval": 2
+  },
   "pulseaudio":{
     "format": "{volume}% {icon}",
     "format-muted": "",
@@ -25,12 +39,15 @@
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
   },
   "network":{
+    "format-disconnected": "NO CONNECTION",
+    "format-ethernet": "{ipaddr} ",
     "format-wifi": "{essid} ({signalStrength}%) "
   },
   "battery":{
     "format": "{capacity}% {icon}",
-    "format-charging": "{capacity}%  {icon}",
+    "format-charging": "{capacity}% ",
     "format-full": "BATTERY FULL",
     "format-icons": ["", "", "", "", ""]
   }
 }
+{% endraw %}
