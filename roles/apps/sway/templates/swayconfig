@@ -121,6 +121,8 @@ gaps outer 4
 smart_borders on
 smart_gaps on
 
+client.focused #AA0000 #000000 #EEEEEE #AA0000 #AA0000
+
 #
 # Bindings
 #
