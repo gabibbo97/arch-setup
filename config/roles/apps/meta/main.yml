@@ -13,3 +13,4 @@ dependencies:
   - { role: apps/sysadmin, tags: ["sysadmin"] }
   - { role: apps/tools, tags: ["tools"] }
   - { role: apps/vscode, tags: ["vscode"] }
+  - { role: apps/zsh, tags: ["zsh"] }

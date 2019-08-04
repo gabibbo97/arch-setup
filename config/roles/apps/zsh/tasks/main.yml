@@ -1,0 +1,31 @@
+---
+- name: Install Zsh
+  pacman:
+    name:
+      - zsh
+      - zsh-completions
+      - zsh-autosuggestions
+      - zsh-history-substring-search
+      - zsh-syntax-highlighting
+  become: true
+
+- name: Template ~/.zshrc
+  template:
+    src: zshrc.zsh
+    dest: "{{ ansible_user_dir }}/.zshrc"
+
+- name: Set user default shell
+  user:
+    name: "{{ ansible_user }}"
+    shell: "{{ lookup('pipe','which zsh') }}"
+  become: true
+
+- name: Delete bash leftovers
+  file:
+    path: "{{ ansible_user_dir }}/{{ item }}"
+    state: absent
+  loop:
+    - .bash_history
+    - .bash_logout
+    - .bash_profile
+    - .bashrc
