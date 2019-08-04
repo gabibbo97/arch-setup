@@ -15,9 +15,7 @@
   lineinfile:
     path: /etc/mkinitcpio.conf
     regexp: "^BINARIES"
-    line: >-
-      BINARIES=(
-        )
+    line: BINARIES=()
   become: true
   notify: Regen initramfs
 
@@ -25,12 +23,7 @@
   lineinfile:
     path: /etc/mkinitcpio.conf
     regexp: "^MODULES"
-    line: >-
-      MODULES=(
-        {{ 'dm-crypt' if is_crypt else '' }}
-        {{ 'dm-raid' if is_raid1 else '' }}
-        {{ 'raid1' if is_raid1 else '' }}
-        )
+    line: "MODULES=({{ ' dm-crypt' if is_crypt else '' }}{{ ' dm-raid' if is_raid1 else '' }}{{ ' raid1' if is_raid1 else '' }} )"
   become: true
   notify: Regen initramfs
 
@@ -38,19 +31,6 @@
   lineinfile:
     path: /etc/mkinitcpio.conf
     regexp: "^HOOKS"
-    line: >-
-      HOOKS=(
-        base
-        systemd
-        autodetect
-        modconf
-        block
-        sd-vconsole
-        {{ 'sd-lvm2' if is_lvm else '' }}
-        {{ 'sd-encrypt' if is_crypt else '' }}
-        filesystems
-        keyboard
-        strip
-        )
+    line: "HOOKS=( base systemd autodetect modconf block sd-vconsole{{ ' sd-lvm2' if is_lvm else '' }}{{ ' sd-encrypt' if is_crypt else '' }} filesystems keyboard strip )"
   become: true
   notify: Regen initramfs
