@@ -30,6 +30,7 @@
       # Shell
       - shellcheck
   become: true
+
 - name: Install Android tools
   import_role:
     name: aur

@@ -9,6 +9,15 @@
       - vault
   become: true
 
+- name: Install AUR sysadmin apps
+  import_role:
+    name: aur
+  vars:
+    aur_packages:
+      # MongoDB
+      - robo3t-bin
+      - openssl-1.0
+
 - name: Get Vagrant plugin list
   command: vagrant plugin list
   register: command

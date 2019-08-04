@@ -1,0 +1,7 @@
+---
+- name: Install games
+  import_role:
+    name: aur
+  vars:
+    aur_packages:
+      - minecraft-launcher

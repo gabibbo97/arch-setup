@@ -1,13 +1,14 @@
 ---
 dependencies:
-- { role: apps/docker, tags: ["docker"] }
-- { role: apps/git, tags: ["git"] }
-- { role: apps/internet, tags: ["internet"] }
-- { role: apps/k8s, tags: ["k8s"] }
-- { role: apps/media, tags: ["media"] }
-- { role: apps/office, tags: ["office"] }
-- { role: apps/programming, tags: ["programming"] }
-- { role: apps/sway, tags: ["sway"] }
-- { role: apps/sysadmin, tags: ["sysadmin"] }
-- { role: apps/tools, tags: ["tools"] }
-- { role: apps/vscode, tags: ["vscode"] }
+  - { role: apps/docker, tags: ["docker"] }
+  - { role: apps/gaming, tags: ["gaming"] }
+  - { role: apps/git, tags: ["git"] }
+  - { role: apps/internet, tags: ["internet"] }
+  - { role: apps/k8s, tags: ["k8s"] }
+  - { role: apps/media, tags: ["media"] }
+  - { role: apps/office, tags: ["office"] }
+  - { role: apps/programming, tags: ["programming"] }
+  - { role: apps/sway, tags: ["sway"] }
+  - { role: apps/sysadmin, tags: ["sysadmin"] }
+  - { role: apps/tools, tags: ["tools"] }
+  - { role: apps/vscode, tags: ["vscode"] }
