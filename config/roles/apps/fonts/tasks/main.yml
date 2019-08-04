@@ -1,0 +1,15 @@
+---
+- name: Install fonts
+  pacman:
+    name:
+      - noto-fonts
+      - noto-fonts-emoji
+      - otf-fira-code
+      - otf-fira-mono
+      - otf-font-awesome
+      - ttf-dejavu
+      - ttf-joypixels
+      - ttf-liberation
+      - ttf-roboto
+      - ttf-ubuntu-font-family
+  become: true

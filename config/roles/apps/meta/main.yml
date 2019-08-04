@@ -1,6 +1,7 @@
 ---
 dependencies:
   - { role: apps/docker, tags: ["docker"] }
+  - { role: apps/fonts, tags: ["fonts"] }
   - { role: apps/gaming, tags: ["gaming"] }
   - { role: apps/git, tags: ["git"] }
   - { role: apps/internet, tags: ["internet"] }
