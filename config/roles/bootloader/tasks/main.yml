@@ -16,3 +16,4 @@
   changed_when:
     - command['stdout'] is defined
     - command['stdout'] | length > 0
+  become: true

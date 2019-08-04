@@ -19,3 +19,4 @@
     force: true
   loop:
     - systemd-boot-config-generator.sh
+  become: true
