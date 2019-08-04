@@ -6,10 +6,11 @@
       - bemenu
       - dmenu
       - grim
+      - libnotify
       - mako
       - otf-font-awesome
+      - qt5-wayland
       - slurp
-      - libnotify
       - sway
       - swaybg
       - swayidle
@@ -55,4 +56,3 @@
     QT_QPA_PLATFORM: wayland-egl
     SDL_VIDEODRIVER: wayland
   become: true
-  
