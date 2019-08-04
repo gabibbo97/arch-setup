@@ -29,6 +29,8 @@ vscode_extensions:
 
 vscode_config:
   editor.cursorSmoothCaretAnimation: true
+  editor.fontFamily: "'Fira Code', 'monospace', monospace"
+  editor.fontLigatures: true
   editor.formatOnPaste: true
   editor.formatOnType: true
   editor.glyphMargin: false
@@ -46,6 +48,7 @@ vscode_config:
   git.enableSmartCommit: true
   git.fetchOnPull: true
   git.rebaseWhenSync: true
+  terminal.integrated.fontFamily: "'Fira Mono', 'monospace'"
   window.title: "${dirty}${activeEditorShort}${separator}${rootName}"
   window.titleBarStyle: custom
   workbench.colorTheme: FlatUI Dark

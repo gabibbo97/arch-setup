@@ -1,4 +1,18 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
+
+# Font
+font:
+  # The normal (roman) font face to use.
+  normal:
+    family: Fira Mono
+    style: Regular
+
+  # The bold font face
+  bold:
+    family: Fira Mono
+    style: Bold
+
+# Mouse
 mouse:
   hide_when_typing: true
 
