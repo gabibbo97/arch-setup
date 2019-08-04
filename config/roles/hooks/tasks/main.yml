@@ -10,3 +10,12 @@
     dest: /etc/pacman.d/hooks
   with_fileglob: "{{ role_path }}/templates/*.hook"
   become: true
+
+- name: Deploy binaries
+  copy:
+    src: "{{ item }}"
+    dest: "/usr/local/bin/{{ item | basename | splitext | first }}"
+    mode: 0755
+    force: true
+  loop:
+    - systemd-boot-config-generator.sh

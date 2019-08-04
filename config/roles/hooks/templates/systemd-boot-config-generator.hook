@@ -1,0 +1,23 @@
+[Trigger]
+Type = Package
+Operation = Upgrade
+Target = systemd
+
+[Trigger]
+Type = Package
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Target = linux
+
+[Trigger]
+Type = Package
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Target = linux-lts
+
+[Action]
+Description = Generating boot entries
+When = PostTransaction
+Exec = /usr/local/bin/systemd-boot-config-generator

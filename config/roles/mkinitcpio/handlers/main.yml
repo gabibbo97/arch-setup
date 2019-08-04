@@ -1,0 +1,4 @@
+---
+- name: Regen initramfs
+  command: "mkinitcpio --allpresets"
+  become: true

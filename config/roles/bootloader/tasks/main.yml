@@ -1,0 +1,18 @@
+---
+- name: Install AMD microcode
+  pacman:
+    name: amd-ucode
+  when: "'AuthenticAMD' in ansible_processor"
+  become: true
+- name: Install Intel microcode
+  pacman:
+    name: intel-ucode
+  when: "'GenuineIntel' in ansible_processor"
+  become: true
+
+- name: Run bootloader generator
+  command: /usr/local/bin/systemd-boot-config-generator
+  register: command
+  changed_when:
+    - command['stdout'] is defined
+    - command['stdout'] | length > 0

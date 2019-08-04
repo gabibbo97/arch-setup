@@ -1,0 +1,56 @@
+---
+- name: List device kinds
+  command: lsblk -o TYPE
+  become: true
+  changed_when: false
+  register: command
+
+- name: Parse requirements
+  set_fact:
+    is_crypt: "{{ 'crypt' in command['stdout_lines'] }}"
+    is_lvm: "{{ 'lvm' in command['stdout_lines'] }}"
+    is_raid1: "{{ 'raid1' in command['stdout_lines'] }}"
+
+- name: Configure mkinitcpio binaries
+  lineinfile:
+    path: /etc/mkinitcpio.conf
+    regexp: "^BINARIES"
+    line: >-
+      BINARIES=(
+        )
+  become: true
+  notify: Regen initramfs
+
+- name: Configure mkinitcpio modules
+  lineinfile:
+    path: /etc/mkinitcpio.conf
+    regexp: "^MODULES"
+    line: >-
+      MODULES=(
+        {{ 'dm-crypt' if is_crypt else '' }}
+        {{ 'dm-raid' if is_raid1 else '' }}
+        {{ 'raid1' if is_raid1 else '' }}
+        )
+  become: true
+  notify: Regen initramfs
+
+- name: Configure mkinitcpio hooks
+  lineinfile:
+    path: /etc/mkinitcpio.conf
+    regexp: "^HOOKS"
+    line: >-
+      HOOKS=(
+        base
+        systemd
+        autodetect
+        modconf
+        block
+        sd-vconsole
+        {{ 'sd-lvm2' if is_lvm else '' }}
+        {{ 'sd-encrypt' if is_crypt else '' }}
+        filesystems
+        keyboard
+        strip
+        )
+  become: true
+  notify: Regen initramfs
