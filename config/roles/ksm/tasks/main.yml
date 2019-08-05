@@ -1,0 +1,12 @@
+---
+- name: Create tmpfiles dir
+  file:
+    path: /etc/tmpfiles.d
+    state: directory
+  become: true
+- name: Enable KSM
+  copy:
+    content: w /sys/kernel/mm/ksm/run - - - - 1
+    dest: /etc/tmpfiles.d/ksm.conf
+    force: true
+  become: true

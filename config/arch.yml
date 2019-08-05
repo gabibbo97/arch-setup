@@ -9,6 +9,7 @@
     - { role: aur, tags: ["aur"] }
     - { role: bootloader, tags: ["bootloader"] }
     - { role: hooks, tags: ["hooks"] }
+    - { role: ksm, tags: ["ksm"] }
     - { role: makepkg, tags: ["makepkg"] }
     - { role: mkinitcpio, tags: ["mkinitcpio"] }
     - { role: network, tags: ["network"] }
