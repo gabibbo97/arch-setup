@@ -55,15 +55,16 @@ genEntry() {
     printf '%s %s\n' \
       'title' 'Arch Linux' \
       'version' "$2" \
-      'linux' "$3" \
-      'initrd' "$4"
+      'linux' "$3"
 
     if [ -f /boot/amd-ucode.img ]; then
-      printf '%s %s\n' 'initrd' 'amd-ucode.img'
+      printf '%s %s\n' 'initrd' '/amd-ucode.img'
     fi
     if [ -f /boot/intel-ucode.img ]; then
-      printf '%s %s\n' 'initrd' 'intel-ucode.img'
+      printf '%s %s\n' 'initrd' '/intel-ucode.img'
     fi
+
+    printf '%s %s\n' 'initrd' "$4"
 
     if [ -f /boot/loader/cmdline.conf ]; then
       printf 'options '
