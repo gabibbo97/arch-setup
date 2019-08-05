@@ -6,6 +6,7 @@
       - exa
       - fzf
       - jq
+      - par2cmdline
       - parallel
       - ripgrep
       - tree
