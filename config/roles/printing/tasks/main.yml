@@ -1,0 +1,46 @@
+---
+- name: Install printing support
+  import_role:
+    name: aur
+  vars:
+    aur_packages:
+      - cups
+      - cups-pk-helper
+      - foomatic-db
+      - foomatic-db-gutenprint-ppds
+      - foomatic-db-nonfree-ppds
+      - foomatic-db-ppds
+      - hplip
+      - hplip-plugin
+      - sane
+
+- name: Set paper size
+  copy:
+    dest: /etc/papersize
+    content: a4
+    force: true
+  become: true
+
+- name: Create PolKit dir
+  file:
+    path: /etc/polkit-1/rules.d
+    state: directory
+- name: Enable passwordless printer admin
+  copy:
+    dest: /etc/polkit-1/rules.d/49-allow-passwordless-printer-admin.rules
+    content: |-
+      polkit.addRule(function(action, subject) {
+        if (action.id == "org.opensuse.cupspkhelper.mechanism.all-edit" &&
+          subject.isInGroup("wheel")){
+          return polkit.Result.YES;
+        }
+      });
+    force: true
+  become: true
+
+- name: Enable CUPS socket
+  systemd:
+    name: org.cups.cupsd.socket
+    enabled: true
+    state: started
+  become: true
