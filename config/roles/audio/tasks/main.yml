@@ -2,6 +2,17 @@
 - name: Install PulseAudio
   pacman:
     name:
+      - pavucontrol
       - pulseaudio
       - pulseaudio-alsa
   become: true
+
+- name: Create pulseaudio configuration directory
+  file:
+    path: "{{ ansible_user_dir }}/.config/pulse"
+    state: directory
+- name: Configure PulseAudio
+  copy:
+    src: daemon.conf
+    dest: "{{ ansible_user_dir }}/.config/pulse"
+    force: true
