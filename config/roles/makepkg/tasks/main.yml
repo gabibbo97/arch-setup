@@ -1,0 +1,27 @@
+---
+- name: Configure CFLAGS
+  lineinfile:
+    path: /etc/makepkg.conf
+    regexp: ^CFLAGS
+    line: CFLAGS="-march=native -O2 -pipe -fno-plt"
+  become: true
+- name: Configure CXXFLAGS
+  lineinfile:
+    path: /etc/makepkg.conf
+    regexp: ^CXXFLAGS
+    line: CXXFLAGS="-march=native -O2 -pipe -fno-plt"
+  become: true
+
+- name: Configure build directory
+  lineinfile:
+    path: /etc/makepkg.conf
+    regexp: ^[#]?BUILDDIR
+    line: BUILDDIR=/tmp/makepkg
+  become: true
+
+- name: Configure multicore compression
+  lineinfile:
+    path: /etc/makepkg.conf
+    regexp: ^COMPRESSXZ
+    line: COMPRESSXZ=(xz -c -T0 -z -)
+  become: true
