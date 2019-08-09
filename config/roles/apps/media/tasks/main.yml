@@ -4,6 +4,15 @@
     name:
       - cmus
   become: true
+- name: Install image editors
+  pacman:
+    name:
+      - gimp
+      - gimp-plugin-gmic
+      - hugin
+      - inkscape
+      - luminancehdr
+  become: true
 - name: Install image tools
   pacman:
     name:
