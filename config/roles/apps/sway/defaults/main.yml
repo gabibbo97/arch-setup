@@ -14,6 +14,12 @@ extra_input:
       xkb_layout gb
       xkb_variant intl
     }
+  longotech-beast: |-
+    input "9610:4102:Gaming_KB__Gaming_KB__Keyboard" {
+      xkb_layout us
+      xkb_variant intl
+      xkb_numlock enabled
+    }
 extra_output:
   LongoTech-laptop: |-
     output eDP-1 scale 2
