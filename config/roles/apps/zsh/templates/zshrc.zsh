@@ -1,3 +1,8 @@
+# Autostart Sway
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+  exec sway
+fi
+
 # Plugins
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
