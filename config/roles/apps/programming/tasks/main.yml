@@ -38,3 +38,15 @@
     aur_packages:
       - android-studio
       - android-tools
+      - android-udev
+  tags:
+    - android
+
+- name: Add user to adbusers group
+  user:
+    append: true
+    groups: adbusers
+    name: "{{ ansible_user }}"
+  become: true
+  tags:
+    - android
