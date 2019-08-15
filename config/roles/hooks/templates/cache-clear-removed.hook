@@ -1,0 +1,12 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type = Package
+Target = *
+
+[Action]
+Description = Remove uninstalled packages from cache
+Depends = pacman-contrib
+When = PostTransaction
+Exec = {{ lookup('pipe','which paccache') }} --remove --uninstalled --keep 0 --verbose

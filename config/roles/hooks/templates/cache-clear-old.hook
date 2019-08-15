@@ -1,0 +1,12 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type = Package
+Target = *
+
+[Action]
+Description = Remove old packages from cache
+Depends = pacman-contrib
+When = PostTransaction
+Exec = {{ lookup('pipe','which paccache') }} --remove --keep 3 --verbose

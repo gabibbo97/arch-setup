@@ -1,4 +1,11 @@
 ---
+- name: Install Pacman hook tools
+  pacman:
+    name:
+      - pacman-contrib
+      - reflector
+  become: true
+
 - name: Create pacman hooks directory
   file:
     path: /etc/pacman.d/hooks
