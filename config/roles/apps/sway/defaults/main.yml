@@ -15,10 +15,11 @@ extra_input:
       xkb_variant intl
     }
   longotech-beast: |-
-    input "9610:4102:Gaming_KB__Gaming_KB__Keyboard" {
+    input "9610:4102:Gaming_KB__Gaming_KB" {
       xkb_layout us
       xkb_variant intl
       xkb_numlock enabled
+      xkb_options eurosign:e
     }
 extra_output:
   LongoTech-laptop: |-
