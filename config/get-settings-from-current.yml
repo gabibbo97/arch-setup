@@ -1,0 +1,21 @@
+---
+- hosts: localhost
+  become: false
+  tasks:
+    # vscode
+    - name: List Visual Studio Code extensions
+      command: code --list-extensions
+      register: code_extensions
+    - name: Grab Visual Studio Code configuration
+      slurp:
+        src: "{{ ansible_user_dir }}/.config/Code - OSS/User/settings.json"
+      register: code_config
+    - name: Parse Visual Studio Code configuration
+      set_fact:
+        code_extensions: "{{ code_extensions['stdout_lines'] | sort | list }}"
+        code_config: "{{ code_config['content'] | b64decode | from_json }}"
+    - name: Configure playbook
+      copy:
+        content: "{{ { 'vscode_extensions' : code_extensions, 'vscode_config' : code_config } | to_nice_yaml }}"
+        dest: "{{ playbook_dir }}/roles/apps/vscode/defaults/main.yml"
+        force: true

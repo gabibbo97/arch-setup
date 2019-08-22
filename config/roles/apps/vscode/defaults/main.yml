@@ -1,55 +1,72 @@
----
-vscode_extensions:
-  - aaron-bond.better-comments
-  - CoenraadS.bracket-pair-colorizer-2
-  - coolbear.systemd-unit-file
-  - dbaeumer.vscode-eslint
-  - eamodio.gitlens
-  - felixfbecker.php-debug
-  - felixfbecker.php-intellisense
-  - felixfbecker.php-pack
-  - goessner.mdmath
-  - hbenl.vscode-firefox-debug
-  - James-Yu.latex-workshop
-  - lkytal.FlatUI
-  - mauve.terraform
-  - ms-azuretools.vscode-docker
-  - ms-kubernetes-tools.vscode-kubernetes-tools
-  - ms-python.python
-  - ms-vscode.cpptools
-  - ms-vscode.Go
-  - msjsdiag.debugger-for-chrome
-  - redhat.java
-  - redhat.vscode-yaml
-  - rust-lang.rust
-  - shanoor.vscode-nginx
-  - timonwong.shellcheck
-  - vscode-icons-team.vscode-icons
-  - vscoss.vscode-ansible
-
 vscode_config:
-  editor.cursorSmoothCaretAnimation: true
-  editor.fontFamily: "'Fira Code', 'monospace', monospace"
-  editor.fontLigatures: true
-  editor.formatOnPaste: true
-  editor.formatOnType: true
-  editor.glyphMargin: false
-  editor.renderControlCharacters: true
-  editor.renderLineHighlight: all
-  editor.renderWhitespace: boundary
-  files.insertFinalNewline: true
-  files.trimFinalNewlines: true
-  files.trimTrailingWhitespace: true
-  git.allowForcePush: true
-  git.alwaysSignOff: true
-  git.autofetch: true
-  git.autoStash: true
-  git.confirmSync: false
-  git.enableSmartCommit: true
-  git.fetchOnPull: true
-  git.rebaseWhenSync: true
-  terminal.integrated.fontFamily: "'Fira Mono', 'monospace'"
-  window.title: "${dirty}${activeEditorShort}${separator}${rootName}"
-  window.titleBarStyle: custom
-  workbench.colorTheme: FlatUI Dark
-  workbench.iconTheme: vscode-icons
+    csharp.suppressDotnetInstallWarning: true
+    editor.cursorSmoothCaretAnimation: true
+    editor.fontFamily: '''Fira Code'', ''monospace'', monospace'
+    editor.fontLigatures: true
+    editor.formatOnPaste: true
+    editor.formatOnType: true
+    editor.glyphMargin: false
+    editor.renderControlCharacters: true
+    editor.renderLineHighlight: all
+    editor.renderWhitespace: boundary
+    files.insertFinalNewline: true
+    files.trimFinalNewlines: true
+    files.trimTrailingWhitespace: true
+    git.allowForcePush: true
+    git.alwaysSignOff: true
+    git.autoStash: true
+    git.autofetch: true
+    git.confirmSync: false
+    git.enableSmartCommit: true
+    git.fetchOnPull: true
+    git.rebaseWhenSync: true
+    terminal.integrated.fontFamily: '''Fira Mono'', ''monospace'''
+    window.title: ${dirty}${activeEditorShort}${separator}${rootName}
+    window.titleBarStyle: custom
+    workbench.colorTheme: FlatUI Dark
+    workbench.iconTheme: vscode-icons
+vscode_extensions:
+- aaron-bond.better-comments
+- Angular.ng-template
+- bbenoist.vagrant
+- bmewburn.vscode-intelephense-client
+- christian-kohler.path-intellisense
+- CoenraadS.bracket-pair-colorizer
+- CoenraadS.bracket-pair-colorizer-2
+- coolbear.systemd-unit-file
+- dbaeumer.vscode-eslint
+- eamodio.gitlens
+- felixfbecker.php-debug
+- felixfbecker.php-intellisense
+- felixfbecker.php-pack
+- firefox-devtools.vscode-firefox-debug
+- formulahendry.auto-close-tag
+- formulahendry.auto-rename-tag
+- goessner.mdmath
+- James-Yu.latex-workshop
+- lkytal.FlatUI
+- mauve.terraform
+- ms-azuretools.vscode-docker
+- ms-kubernetes-tools.vscode-kubernetes-tools
+- ms-python.python
+- ms-vscode.cpptools
+- ms-vscode.csharp
+- ms-vscode.Go
+- msjsdiag.debugger-for-chrome
+- msjsdiag.vscode-react-native
+- nrwl.angular-console
+- rebornix.ruby
+- redhat.java
+- redhat.vscode-yaml
+- rust-lang.rust
+- shanoor.vscode-nginx
+- timonwong.shellcheck
+- VisualStudioExptTeam.vscodeintellicode
+- vscjava.vscode-java-debug
+- vscjava.vscode-java-dependency
+- vscjava.vscode-java-pack
+- vscjava.vscode-java-test
+- vscjava.vscode-maven
+- vscode-icons-team.vscode-icons
+- vscoss.vscode-ansible
+- yzhang.markdown-all-in-one
